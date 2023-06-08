@@ -77,15 +77,15 @@ d-i passwd/user-fullname string Media
 
 d-i passwd/username string media
 
-d-i passwd/user-password  password 4090telferdr
+d-i passwd/user-password  password zima
 
-d-i passwd/user-password-again password 4090telferdr
+d-i passwd/user-password-again password zima
 
 d-i passwd/root-login boolean true
 
-d-i passwd/root-password password 4090telferdr
+d-i passwd/root-password password zima
 
-d-i passwd/root-password-again password 4090telferdr
+d-i passwd/root-password-again password zima
 
 popularity-contest popularity-contest/participate boolean false
 
@@ -114,10 +114,10 @@ d-i iptables-persistent/autosave_v4 boolean true
 d-i iptables-persistent/autosave_v6 boolean true
 
 # Uncomment to have reboot only - make sure to comment out poweroff
-#d-i finish-install/reboot_in_progress note
+d-i finish-install/reboot_in_progress note
 
 d-i cdrom-detect/eject boolean true
 
 #Comment out for preventing shutdown 
-d-i debian-installer/exit/poweroff boolean true
+#d-i debian-installer/exit/poweroff boolean true
 
