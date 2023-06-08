@@ -1,0 +1,123 @@
+# Partitioning.
+d--i keyboard-configuration/xkb-keymap select us
+
+d-i debian-installer/locale string en_US.UTF-8
+
+d-i localechooser/supported-locales multiselect en_US.UTF-8 
+
+d-i debian-installer/language string en
+
+d-i debian-installer/country string US
+
+d-i netcfg/choose_interface select auto
+
+d-i netcfg/get_hostname string zimaboard
+
+d-i netcfg/get_domain string local
+
+d-i netcfg/wireless_wep string
+
+d-i hw-detect/load_firmware boolean true
+
+d-i mirror/country string manual
+
+d-i mirror/http/hostname string ftp.ca.debian.org
+
+d-i mirror/http/directory string /debian
+
+d-i mirror/http/proxy string
+
+d-i clock-setup/utc boolean true
+
+d-i time/zone string US/Eastern
+
+d-i clock-setup/ntp boolean true
+
+d-i partman-lvm/device_remove_lvm boolean true
+
+d-i partman-md/device_remove_md boolean true
+
+d-i partman-lvm/confirm boolean true
+
+d-i partman-lvm/confirm_nooverwrite boolean true
+
+#Built to scan for SDA for install and not use USB
+#d-i partman/early_command \
+    string debconf-set partman-auto/disk "$(echo /dev/`ls -l /sys/block/[hs]d* | grep -v "usb" | head -n1 | sed 's/^.*\([hs]d[a-z]\+\).*$/\1/'`)"
+
+d-i partman-auto/method string regular
+
+d-i partman/default_filesystem string ext4
+
+#testing drive comment out after testing 
+#d-i partman-auto/disk string /dev/sda
+
+#Zimaboard Drive after testing uncomment
+d-i partman-auto/disk string /dev/mmcblk0
+
+d-i partman-auto/choose_recipe select atomic
+
+d-i partman-partitioning/confirm_write_new_label boolean true
+
+d-i partman/choose_partition select finish
+
+d-i partman/confirm boolean true
+
+d-i partman/confirm_nooverwrite boolean true
+
+d-i apt-setup/non-free boolean true
+
+d-i apt-setup/cdrom/set-first boolean false
+
+d-i apt-setup/cdrom/set-next boolean false   
+
+d-i apt-setup/cdrom/set-failed boolean false
+
+d-i passwd/user-fullname string Media
+
+d-i passwd/username string media
+
+d-i passwd/user-password  password 4090telferdr
+
+d-i passwd/user-password-again password 4090telferdr
+
+d-i passwd/root-login boolean true
+
+d-i passwd/root-password password 4090telferdr
+
+d-i passwd/root-password-again password 4090telferdr
+
+popularity-contest popularity-contest/participate boolean false
+
+d-i grub-installer/only_debian boolean true
+
+d-i grub-installer/with_other_os boolean  false
+
+#comment out after testing 
+#d-i grub-installer/bootdev string /dev/sda
+
+#uncomment after testing 
+d-i grub-installer/bootdev string /dev/mmcblk0
+
+d-i pkgsel/update-policy select none
+
+d-i pkgsel/include string openssh-server
+
+d-i samba-common/dhcp boolean false
+
+d-i samba-common/do_debconf boolean true
+
+d-i samba-common/workgroup string AUTOBOTS
+
+d-i iptables-persistent/autosave_v4 boolean true
+
+d-i iptables-persistent/autosave_v6 boolean true
+
+# Uncomment to have reboot only - make sure to comment out poweroff
+#d-i finish-install/reboot_in_progress note
+
+d-i cdrom-detect/eject boolean true
+
+#Comment out for preventing shutdown 
+d-i debian-installer/exit/poweroff boolean true
+

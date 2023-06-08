@@ -1,0 +1,6 @@
+curl https://downloads.plex.tv/plex-keys/PlexSign.key > PlexSign.key
+apt-key --keyring $(pwd)/custom_extras/cfg/apt/etc/apt/trusted.gpg.d/PlexSign.gpg add PlexSign.key
+echo deb https://downloads.plex.tv/repo/deb public main | sudo tee $(pwd)/custom_extras/cfg/apt/etc/apt/sources.list.d/plexserver.list
+
+
+curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -

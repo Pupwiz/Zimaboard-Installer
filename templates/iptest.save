@@ -1,0 +1,92 @@
+conf_file='/home/user/ip.conf'
+ v1="$(sed -n 's/\b(?:ip_address=)(((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\b/\1/p' $conf_file)"
+echo "The ip address is : $v1"
+
+
+sed -r 's/(\b[0-9]{1,3}\.){3}[0-9]{1,3}\b'/"$newip"/
+
+
+
+
+
+
+
+
+
+
+
+oo much. Big problems are sum of small problems - just take one little problem one at a time
+
+
+.
+
+# Filter lines with ip_address. Allow leading spaces.
+if ! ip_address=$(grep '^[[:space:]]*ip_address=' "$conf_file")l then
+    echo "ERROR: no line ip_Address found in config file" >&2
+    exit 2
+fi
+
+# dissallow two ip_address= lines
+if [[ "$(printf "%s\n" "$ip_address" | wc -l)" -gt 1 ]]; then
+    echo "ERROR: There are two lines with ip_address in config file!" >&2
+    exit 2
+fi
+
+# remove the string before `=`
+ip_address=${ip_address##*=}
+
+# check if it's a valid address
+re='^(0*(1?[0-9]{1,2}|2([0-4][0-9]|5[0-5]))\.){3}'
+re+='0*(1?[0-9]{1,2}|2([‌​0-4][0-9]|5[0-5]))$'
+if [[ ! $ip_address =~ $re ]]; then
+    echo "ERROR: ip_Address option is not valid ip address" >&2
+    exit 2
+fi
+echo "found ip_Address=$ip_address"
+But sure, you can do it all in GNU sed, including error handling:
+
+if ! ip_address=$(sed -n '
+       # if its the last line i should have ip_address in hold space
+       ${
+          x
+          # if I dont, that means error
+          /^$/{
+             s/.*/ERROR: no ip_Address found in the file/
+             p
+             q 1
+          }
+          # print the ip address
+          p
+       }
+       # remove lines that are not ip_Addresses
+       /^[[:space:]]*ip_address=/!{d;b}
+       # remove ip_address= strnig
+       s///
+
+       # if there is something in hold space, means we already found ip_address
+       x
+       /^$/!{
+         s/.*/ERROR: two lines with ipaddress found/
+         p
+         q 1
+       }
+       x
+
+       # check if the rest is a valid ip addresss
+       /^\(0*\(1\?[0-9]\{1,2\}\|2\([0-4][0-9]\|5[0-5]\)\)\.\)\{3\}0*\(1\?[0-9]\{1,2\}\|2\([0-4][0-9]\|5[0-5]\)\)$/!{
+          s/.*/ERROR: Invalid ip address: &/
+          p
+          q 1
+       }
+
+       # hold the valid ip_address in hold space
+       h
+
+' "$conf_file"); then
+       echo "$ip_address" >&2
+       exit 2
+fi
+echo "Found ip_address=$ip_address"
+I believe your idea was to do it just like:
+
+sed -n -E 's/^ip_address=(((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[

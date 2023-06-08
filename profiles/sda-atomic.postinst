@@ -1,0 +1,45 @@
+#!/bin/sh
+sudo usermod -s /bin/bash -aG sudo media
+#adding tunnel user - vpn to split tunnel transmission on VPN side for torrent protection
+#sudo adduser --disabled-login --gecos "" vpn
+# allowing Media user and VPN to interact 
+sudo adduser debian-transmission media
+# configure console locale
+dpkg-reconfigure console-setup
+dpkg-reconfigure keyboard-configuration
+# mount cdrom to copy custom configs
+unpack_tars(){
+    dir="$1"
+    echo "Starting unpack_tars '$dir'..."
+    if [ -d "$dir" ]; then
+        echo "Scanning tars in '$dir'..."
+        for f in "$dir"/*.tar; do
+            echo "Unpacking '$f'..."
+            tar -xvf $f || echo "WARN: $f failed."
+            echo "Unpacked '$f'."
+        done
+    fi
+    echo "Finished unpack_tars '$dir'."
+}
+unpack_tars "/media/cdrom/simple-cdd/cfg"
+unpack_tars "/media/cdrom/simple-cdd/cfg/trans/opt"
+unpack_tars "/media/hd-media/simple-cdd/cfg"
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 10
+sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
+# modify permissions to home folder
+chmod -R o-rwx /home
+# make folder to store VPN configs
+mount -t auto /media/cdrom
+chmod a+r /etc/apt/sources.list
+pkexec chmod 0755 /etc/sudoers.d
+sudo sed -i '/GRUB_TIMEOUT=5/c GRUB_TIMEOUT=2' /etc/default/grub
+sudo sed -i '/GRUB_CMDLINE_LINUX_DEFAULT="quiet"/c GRUB_CMDLINE_LINUX_DEFAULT=""' /etc/default/grub
+sudo sed -i  '18i GRUB_BACKGROUND="/etc/grub.d/grub.png"' /etc/default/grub
+sudo sed -i '/GRUB_CMDLINE_LINUX=""/c GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"' /etc/default/grub
+sudo update-grub
+apt-key update
+sudo update-ca-certificates -f
+msg y
+
+
+
