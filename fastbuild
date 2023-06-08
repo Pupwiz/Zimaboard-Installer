@@ -1,5 +1,5 @@
 #!/bin/sh
-apt -qq install dos2linux
+apt -qq install dos2unix
 ##make sure linux readable files - caused problems in past
 echo "Making sure all files are Linux readabel"  | wall -n 
 `find $(pwd)/custom_extras/cfg/ -type f -print0 | xargs -0 dos2unix --`
