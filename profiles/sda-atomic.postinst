@@ -22,13 +22,13 @@ unpack_tars(){
     echo "Finished unpack_tars '$dir'."
 }
 unpack_tars "/media/cdrom/simple-cdd/cfg"
-unpack_tars "/media/cdrom/simple-cdd/cfg/trans/opt"
-unpack_tars "/media/hd-media/simple-cdd/cfg"
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 10
 sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
 # modify permissions to home folder
 chmod -R o-rwx /home
-# make folder to store VPN configs
+# Add crontask to install extras after system reboot
+crontab -r
+(crontab -u root -l ; echo "@reboot /home/media/jellyfin.sh") | crontab -u root -
 mount -t auto /media/cdrom
 chmod a+r /etc/apt/sources.list
 pkexec chmod 0755 /etc/sudoers.d
