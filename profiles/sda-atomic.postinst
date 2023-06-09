@@ -37,7 +37,13 @@ sudo sed -i '/GRUB_CMDLINE_LINUX_DEFAULT="quiet"/c GRUB_CMDLINE_LINUX_DEFAULT="n
 sudo update-grub
 apt-key update
 sudo update-ca-certificates -f
-sudo systemctl disable dnsmasq
+sudo systemctl --now disable wpa_supplicant
+sudo systemctl --now disable dnsmasq
+sudo systemctl --now enable iwd
+sudo systemctl mask dnsmasq.service
+sudo systemctl mask systemd-resolved.service
+sudo systemctl mask dhcpd.service
+sudo systemctl mask dhcpcd.service
 msg y
 
 
