@@ -33,10 +33,12 @@ mount -t auto /media/cdrom
 chmod a+r /etc/apt/sources.list
 pkexec chmod 0755 /etc/sudoers.d
 sudo sed -i '/GRUB_TIMEOUT=5/c GRUB_TIMEOUT=2' /etc/default/grub
+#use old network names for debug of comitup
 sudo sed -i '/GRUB_CMDLINE_LINUX_DEFAULT="quiet"/c GRUB_CMDLINE_LINUX_DEFAULT="net.ifnames=0 biosdevname=0"' /etc/default/grub
 sudo update-grub
 apt-key update
-sudo update-ca-certificates -f
+sudo update-ca-certificates -
+#comitup needs control fo dnsmasq and dhcp leave for it to run services.
 sudo systemctl --now disable wpa_supplicant
 sudo systemctl --now disable dnsmasq
 sudo systemctl --now enable iwd
