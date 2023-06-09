@@ -4,6 +4,8 @@ firmware-linux-nonfree
 firmware-misc-nonfree
 firmware-iwlwifi
 firmware-realtek
+iwd
+network-manager
 lsb-release
 apt-transport-https 
 ca-certificates 
