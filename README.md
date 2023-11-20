@@ -11,3 +11,6 @@ so needs built in bullseye for comitup to work.
 https://github.com/davesteele/comitup.git
 
 bootup wifi for PI and other OS's
+username string media
+passsword string zima
+
