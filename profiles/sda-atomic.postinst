@@ -1,9 +1,5 @@
 #!/bin/sh
 sudo usermod -s /bin/bash -aG sudo media
-#adding tunnel user - vpn to split tunnel transmission on VPN side for torrent protection
-#sudo adduser --disabled-login --gecos "" vpn
-# allowing Media user and VPN to interact 
-sudo adduser debian-transmission media
 # configure console locale
 dpkg-reconfigure console-setup
 dpkg-reconfigure keyboard-configuration
