@@ -1,0 +1,35 @@
+#!/bin/sh
+set -e
+UPDATER=apt
+#!/bin/sh
+
+set -e
+
+test $DEBIAN_SCRIPT_DEBUG && set -v -x
+
+chperms() {
+        # chperms <user> <group> <perms> <file>
+        if ! OVERRIDE=`dpkg-statoverride --list $4 2>&1`; then
+                if [ -e $4 ]; then
+                        chown $1:$2 $4
+                        chmod $3 $4
+                fi
+        fi
+}
+
+case "$1" in
+  configure)
+    if ! getent passwd media > /dev/null; then
+        adduser --quiet \
+                --system \
+                --group \
+                --no-create-home \
+                media
+    fi
+
+esac
+
+# End automatically added section
+
+
+exit 0
