@@ -54,19 +54,7 @@ echo "You are missing the required packages!";
 echo "Starting to build them now...";
 sudo bash $(pwd)/boxtools.sh
 fi
-## Add current comitup packages to build
-COMITUP=/etc/apt/sources.list.d/davesteele-comitup.list
-if test -f "$COMITUP" ;
-then
-echo "File is exist"
-else
-cp $(pwd)/templates/boxtools/etc/apt/sources.list.d/davesteele-comitup.list /etc/apt/sources.list.d/
-cp $(pwd/templates/boxtools/usr/share/keyrings/davesteele-archive-keyring.gpg /usr/share/keyrings/
-apt update
-fi
 
-
-##
 ##https://davesteele.github.io/comitup/deb/comitup_1.38-1_all.deb
 ##https://davesteele.github.io/comitup/deb/comitup-watch_0.2-1_all.deb
 ##https://davesteele.github.io/comitup/deb/python3-dbussy_1.3-2_all.deb
