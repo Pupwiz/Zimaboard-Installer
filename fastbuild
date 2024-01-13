@@ -50,16 +50,17 @@ if ! [[ $(stat -c "%A" $DEH) =~ "x" ]]; then
 ##Check local packages for min required
 LP=$(find local_packages/ -type f | wc -l)
 if [ "$LP" -lt "1" ]; then
-echo "You are missing the ARR required packages!";
+echo "You are missing the required packages!";
 echo "Starting to build them now...";
 sudo bash $(pwd)/boxtools.sh
 fi
-https://davesteele.github.io/comitup/deb/comitup_1.38-1_all.deb
-https://davesteele.github.io/comitup/deb/comitup-watch_0.2-1_all.deb
-https://davesteele.github.io/comitup/deb/python3-dbussy_1.3-2_all.deb
-https://davesteele.github.io/comitup/deb/python3-dnslib_0.9.7+hg20170303-1_all.deb
-https://davesteele.github.io/comitup/deb/python3-networkmanager_2.2-3_all.deb
-https://davesteele.github.io/comitup/deb/python3-zeroconf_0.36.1-1_all.deb
+##
+##https://davesteele.github.io/comitup/deb/comitup_1.38-1_all.deb
+##https://davesteele.github.io/comitup/deb/comitup-watch_0.2-1_all.deb
+##https://davesteele.github.io/comitup/deb/python3-dbussy_1.3-2_all.deb
+##https://davesteele.github.io/comitup/deb/python3-dnslib_0.9.7+hg20170303-1_all.deb
+##https://davesteele.github.io/comitup/deb/python3-networkmanager_2.2-3_all.deb
+##https://davesteele.github.io/comitup/deb/python3-zeroconf_0.36.1-1_all.deb
 
 ##make sure linux readable files - caused problems in past
 echo "Making sure all files are Linux readabel"  | wall -n 
