@@ -10,6 +10,7 @@ Note: Currently only working in Bullseye. Dave working on newer version.
 so needs built in bullseye for comitup to work.
 ```
 </strike>
+
 This was patched on networkmanager.py and now works with bookworm
 
 https://github.com/davesteele/comitup.git
