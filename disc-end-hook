@@ -21,6 +21,7 @@ fix_file() {
           $BASEDIR/../../disc_menu/prompt.cfg \
           $BASEDIR/../../disc_menu/txt.cfg \
           $BASEDIR/../../disc_menu/rqtxt.cfg \
+          $BASEDIR/../../disc_menu/splash.png \
           "$@"
 }
 
