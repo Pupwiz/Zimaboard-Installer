@@ -5,7 +5,8 @@ Test in vm before using to install. Change sda.atomic.preseed and see comments b
 
 contains Dave Steele comitup and comitup-watch 
 <strike>
-```Note: Currently only working in Bullseye. Dave working on newer version.
+```
+Note: Currently only working in Bullseye. Dave working on newer version.
 so needs built in bullseye for comitup to work.
 ```
 </strike>
