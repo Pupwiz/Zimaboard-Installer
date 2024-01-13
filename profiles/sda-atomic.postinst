@@ -1,5 +1,4 @@
 #!/bin/sh
-sudo usermod -s /bin/bash -aG sudo media
 # configure console locale
 dpkg-reconfigure console-setup
 dpkg-reconfigure keyboard-configuration
@@ -25,6 +24,7 @@ sudo systemctl mask dnsmasq.service
 sudo systemctl mask systemd-resolved.service
 sudo systemctl mask dhcpd.service
 sudo systemctl mask dhcpcd.service
+sudo usermod -s /bin/bash -aG sudo media
 msg y
 
 
