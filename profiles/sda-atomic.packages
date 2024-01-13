@@ -51,9 +51,6 @@ gir1.2-gtk-3.0
 uuid-dev 
 original-awk
 iptables-persistent
-exim4-base
-exim4-config
-exim4-daemon-light
 bleachbit
 grub-efi-amd64-bin
 grub-pc-bin
