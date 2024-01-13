@@ -47,6 +47,13 @@ DEH="$DIR/disc-end-hook"
 if ! [[ $(stat -c "%A" $DEH) =~ "x" ]]; then
  sudo chmod +x "$DEH";
  fi
+##Check local packages for min required
+LP=$(find local_packages/ -type f | wc -l)
+if [ "$LP" -lt "1" ]; then
+echo "You are missing the ARR required packages!";
+echo "Starting to build them now...";
+sudo bash $(pwd)/boxtools.sh
+fi
 ##make sure linux readable files - caused problems in past
 echo "Making sure all files are Linux readabel"  | wall -n 
 `find $(pwd)/templates/ -type f -print0 | xargs -0 dos2unix --`
