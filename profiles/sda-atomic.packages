@@ -72,6 +72,5 @@ mdns-scan
 iproute2
 wireless-tools
 comitup
-comitup-watch
 rsync
 boxtools
