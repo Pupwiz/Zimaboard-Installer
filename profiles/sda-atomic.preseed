@@ -48,10 +48,10 @@ d-i partman-auto/method string regular
 d-i partman/default_filesystem string ext4
 
 #testing drive comment out after testing 
-#d-i partman-auto/disk string /dev/sda
+d-i partman-auto/disk string /dev/sda
 
 #Zimaboard Drive after testing uncomment
-d-i partman-auto/disk string /dev/mmcblk0
+#d-i partman-auto/disk string /dev/mmcblk0
 
 d-i partman-auto/choose_recipe select atomic
 
@@ -92,10 +92,10 @@ d-i grub-installer/only_debian boolean true
 d-i grub-installer/with_other_os boolean  false
 
 #comment out after testing 
-#d-i grub-installer/bootdev string /dev/sda
+d-i grub-installer/bootdev string /dev/sda
 
 #uncomment after testing 
-d-i grub-installer/bootdev string /dev/mmcblk0
+#d-i grub-installer/bootdev string /dev/mmcblk0
 
 d-i pkgsel/update-policy select none
 
