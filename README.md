@@ -4,9 +4,15 @@ Simple-cdd build for zimaboard iso build and installer.
 Test in vm before using to install. Change sda.atomic.preseed and see comments before trying.
 
 contains Dave Steele comitup and comitup-watch 
+<strike>
 
+```
 Note: Currently only working in Bullseye. Dave working on newer version.
 so needs built in bullseye for comitup to work.
+```
+
+</strike>
+
 
 https://github.com/davesteele/comitup.git
 
